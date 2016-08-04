@@ -67,12 +67,14 @@ cjsg_parms <- function(session, livre = '', data_inicial = NULL, data_final = NU
   secoes <- paste(secoes, collapse = ',')
   dt_inicial <- ''
   if (!is.null(data_inicial)) {
+    data_inicial <- as.Date(data_inicial)
     dt_inicial <- sprintf('%02d/%02d/%d', lubridate::day(data_inicial),
                           lubridate::month(data_inicial),
                           lubridate::year(data_inicial))
   }
   dt_final <- ''
   if (!is.null(data_final)) {
+    data_final <- as.Date(data_final)
     dt_final <- sprintf('%02d/%02d/%d', lubridate::day(data_final),
                         lubridate::month(data_final),
                         lubridate::year(data_final))
