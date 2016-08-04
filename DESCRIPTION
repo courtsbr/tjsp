@@ -1,0 +1,16 @@
+Package: tjsp
+Title: Scraper do TJSP.
+Version: 0.0.1.9000
+Authors@R: person("Julio", "Trecenti", email = "jtrecenti@abjur.org.br", role = c("aut", "cre"))
+Description: Download e parsing de dados de processos do TJSP. Ainda em versão preliminar. Estamos adicionando funcionalidades aos poucos.
+Depends:
+    R (>= 3.3.1)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+    esaj,
+    abjutils
+RoxygenNote: 5.0.1
+Remotes: abjur/abjutils,
+  abjur/esaj
