@@ -121,6 +121,8 @@ cjsg_pag <- function(pag, path, ow, s) {
 #' @param overwrite sobrescrever arquivos salvos?
 #' @param verbose logical: imprimir mensagens de acompanhamento do download?
 #' @param p probabilidade de imprimir uma mensagem de acompanhamento se \code{verbose} for \code{TRUE}. Default 5\%.
+#'
+#' @export
 cjsg <- function(session, parms, path = './cjsg',
                  max_pag = 10, overwrite = FALSE,
                  verbose = TRUE, p = .05) {
