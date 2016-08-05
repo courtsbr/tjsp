@@ -43,6 +43,28 @@ parse_cjsg_arq <- function(arq) {
     dplyr::select(-item)
 }
 
+#' Parser do CJSG
+#'
+#' Parser dos arquivos HTML baixados pela função \code{\link{cjsg}}.
+#'
+#' @param arqs vetor de arquivos (caminho completo) a serem lidos.
+#'
+#' @return tibble com as colunas
+#' \itemize{
+#'   \item \code{arq} nome do arquivo lido.
+#'   \item \code{id} id contido na página lida.
+#'   \item \code{cd_acordao} código único do acórdão.
+#'   \item \code{n_processo} número do processo (pode repetir).
+#'   \item \code{comarca} nome da comarca.
+#'   \item \code{data_julgamento} data de julgamento em formato \%d/\%m/\%Y.
+#'   \item \code{data_registro} data de registro no sistem em formato \%d/\%m/\%Y.
+#'   \item \code{ementa} ementa do acórdão (muitos vazios).
+#'   \item \code{orgao_julgador} câmara julgadora do recurso.
+#'   \item \code{outros_numeros} números antigos / complementares.
+#'   \item \code{relatora} Nome do relator ou relatora do recurso.
+#'   \item \code{classe_assunto} Classe / assunto, separados por " / ".
+#'   \item \code{txt_ementa} Texto da ementa sem formatação.
+#' }
 #' @export
 parse_cjsg <- function(arqs) {
   abjutils::dvec(parse_cjsg_arq, arqs) %>%
