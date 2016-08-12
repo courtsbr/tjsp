@@ -54,7 +54,7 @@ d_result_cposg <- d_jurisprudencia %>%
   cposg(path = 'data-raw/cposg')
   
 # Parse das páginas HTML obtidas pelo `cposg`
-arqs_cposg <- dir('data-raw/cjsg', full.names = TRUE)
+arqs_cposg <- dir('data-raw/cposg', full.names = TRUE)
 d_cposg <- parse_cposg(arqs_cposg)
 
 d_cposg
