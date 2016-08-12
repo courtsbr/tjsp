@@ -1,0 +1,26 @@
+---
+title: "Case study"
+author: "Julio Trecenti"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Case study}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Nesse estudo de caso vamos baixar dados da 
+Consulta de Julgados de Primeiro Grau.
+
+Primeiro selecionamos o escopo:
+    - Varas cíveis
+    - 
+
+```{r warning=FALSE, message=FALSE}
+library(dplyr)
+library(stringr)
+library(tjsp)
+
+varas <- cjpg_tabs('varas')
+```
+
