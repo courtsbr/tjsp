@@ -5,9 +5,17 @@ get_obj <- function(tipo) {
 
 tree_to_tibble <- function(tree, n = 0) {
   tree <- tree[names(tree) == 'li']
-  titulos <- purrr::map_chr(tree, ~.x[[2]][['text']])
-  cods <- purrr::map_chr(tree, ~.x[[2]][['.attrs']][['value']])
-  ns <- purrr::map_int(tree, ~length(.x))
+  f1 <- dplyr::failwith('', function(.x) {
+    .x[[2]][['text']]
+  }, quiet = TRUE)
+  f2 <- dplyr::failwith('', function(.x) {
+    .x[[2]][['.attrs']][['value']]
+  }, quiet = TRUE)
+  titulos <- purrr::map_chr(tree, f1)
+  titulos <- titulos[titulos != '']
+  cods <- purrr::map_chr(tree, f2)
+  cods <- cods[cods != '']
+  ns <- purrr::map_int(tree, ~length(.x))[seq_along(cods)]
   purrr::map(seq_along(ns), function(i) {
     if (ns[i] == 4) {
       dplyr::data_frame(titulo_leaf = titulos[i], cod_leaf = cods[i])
