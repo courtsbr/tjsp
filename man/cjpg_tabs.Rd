@@ -15,4 +15,3 @@ cjpg_tabs(tipo = c("classe", "assunto", "varas"))
 \description{
 Baixa uma tabela com os elementos de classe, assunto ou varas, para ajudar a baixar usando a função CJPG.
 }
-

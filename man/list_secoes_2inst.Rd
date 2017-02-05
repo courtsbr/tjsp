@@ -12,4 +12,3 @@ list_secoes_2inst()
 \description{
 Baixa lista das seções de segunda instância.
 }
-

@@ -12,4 +12,3 @@ objeto de classe \code{session}.
 \description{
 Abre uma sessão da Consulta de Julgados de Primeiro Grau.
 }
-

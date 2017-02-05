@@ -16,4 +16,3 @@ cposg_um(p, path, ow)
 \description{
 Baixa um processo na consulta de processos de segundo grau do TJSP. Deve ser usado internamente.
 }
-

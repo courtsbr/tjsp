@@ -11,7 +11,7 @@ LazyData: true
 Imports:
     esaj,
     abjutils
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.0
 Remotes: abjur/abjutils,
   abjur/esaj
 Suggests: knitr,

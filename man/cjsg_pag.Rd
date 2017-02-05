@@ -18,4 +18,3 @@ cjsg_pag(pag, path, ow, s)
 \description{
 Baixa uma página a partir de um resultado da CJSG. Não deve ser usado diretamente.
 }
-

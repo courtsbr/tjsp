@@ -69,7 +69,7 @@ parse_cjpg_arq <- function(arq) {
 #'   \item \code{txt_ementa} Texto da ementa sem formatação.
 #' }
 #' @export
-parse_cjsg <- function(arqs) {
+parse_cjpg <- function(arqs) {
   abjutils::dvec(parse_cjpg_arq, arqs) %>%
     dplyr::rename(arq = item)
 }

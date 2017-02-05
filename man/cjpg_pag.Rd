@@ -18,4 +18,3 @@ cjpg_pag(pag, path, ow, s)
 \description{
 Baixa uma página a partir de um resultado da CJPG. Não deve ser usado diretamente.
 }
-

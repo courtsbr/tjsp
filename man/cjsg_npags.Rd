@@ -27,4 +27,3 @@ cjsg(s, parms, max_pag = 1, path = '.') # chamada internamente dentro de cjsg.
 }
 
 }
-

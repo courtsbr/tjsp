@@ -25,4 +25,3 @@ cjpg(session, parms, path = "data-raw/cjpg", max_pag = 10,
 \description{
 Baixa arquivos HTML correspondentes a uma busca na CJPG.
 }
-

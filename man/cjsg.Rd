@@ -25,4 +25,3 @@ cjsg(session, parms, path = "./cjsg", max_pag = 10, overwrite = FALSE,
 \description{
 Baixa arquivos HTML correspondentes a uma busca na CJSG.
 }
-

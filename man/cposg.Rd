@@ -16,4 +16,3 @@ cposg(processos, path = "data-raw/cposg", overwrite = FALSE)
 \description{
 Baixa processos na consulta de processos de segundo grau do TJSP.
 }
-
