@@ -10,7 +10,7 @@ parse_cjpg_um <- function(i, nodes) {
   node <- nodes[[i]]
   trim <- stringr::str_trim
   aux <- node %>%
-    rvest::html_node(xpath = '//a[@title="Visualizar Inteiro Teor"]')
+    rvest::html_node(xpath = './/a[@title="Visualizar Inteiro Teor"]')
   id_processo <- aux %>% rvest::html_attr('name') %>% trim()
   n_processo <- aux %>% rvest::html_text() %>% trim() %>%
     stringr::str_replace_all('[^0-9]', '')
@@ -71,5 +71,6 @@ parse_cjpg_arq <- function(arq) {
 #' @export
 parse_cjpg <- function(arqs) {
   abjutils::dvec(parse_cjpg_arq, arqs) %>%
-    dplyr::rename(arq = item)
+    dplyr::rename(arq = item) %>%
+    dplyr::distinct(id_processo, .keep_all = TRUE)
 }
