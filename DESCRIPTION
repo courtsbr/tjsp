@@ -1,8 +1,8 @@
 Package: tjsp
-Title: Scraper do TJSP.
+Title: Scraper das pesquisas de jurisprudencia do TJSP
 Version: 0.0.1.9000
 Authors@R: person("Julio", "Trecenti", email = "jtrecenti@abjur.org.br", role = c("aut", "cre"))
-Description: Download e parsing de dados de processos do TJSP. Ainda em versão preliminar. Estamos adicionando funcionalidades aos poucos.
+Description: Download e parsing de dados de pesquisas de jurisprudencia do TJSP. Ainda em versão preliminar. Estamos adicionando funcionalidades aos poucos.
 Depends:
     R (>= 3.3.1)
 License: What license is it under?
@@ -10,10 +10,18 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     esaj,
-    abjutils
+    abjutils,
+    httr,
+    rvest,
+    xml2,
+    dplyr,
+    tidyr,
+    stringr,
+    lubridate,
+    magrittr,
+    tibble
 RoxygenNote: 6.0.0
-Remotes: abjur/abjutils,
-  abjur/esaj
+Remotes: abjur/esaj
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
