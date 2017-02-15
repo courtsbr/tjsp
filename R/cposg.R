@@ -22,7 +22,7 @@ cposg_um <- function(p, path, ow) {
   Sys.sleep(1)
   arq <- sprintf('%s/%s.html', path, p)
   if (!file.exists(arq) || ow) {
-    httr::GET('https://esaj.tjsp.jus.br/cpo/sg/search.do',
+    httr::GET('https://esaj.tjsp.jus.br/cposg/search.do',
               query = dados_cposg(p),
               config = httr::config(ssl_verifypeer = FALSE),
               httr::write_disk(arq, overwrite = ow))
