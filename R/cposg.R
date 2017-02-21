@@ -19,7 +19,7 @@ dados_cposg <- function(p) {
 #' @param ow sobrescrever o arquivo HTML?
 #'
 cposg_um <- function(p, path, ow) {
-  Sys.sleep(1)
+  # Sys.sleep(1)
   arq <- sprintf('%s/%s.html', path, p)
   if (!file.exists(arq) || ow) {
     httr::GET('https://esaj.tjsp.jus.br/cposg/search.do',
