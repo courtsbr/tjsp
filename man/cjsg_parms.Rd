@@ -4,7 +4,8 @@
 \alias{cjsg_parms}
 \title{Parâmetros de pesquisa}
 \usage{
-cjsg_parms(session, livre = "", data_inicial = NULL, data_final = NULL,
+cjsg_parms(session, livre = "", data_inicial_julg = NULL,
+  data_final_julg = NULL, data_inicial_reg = NULL, data_final_reg = NULL,
   secoes = "")
 }
 \arguments{
@@ -12,9 +13,13 @@ cjsg_parms(session, livre = "", data_inicial = NULL, data_final = NULL,
 
 \item{livre}{string com pesquisa livre por palavras-chave.}
 
-\item{data_inicial}{data inicial da decisão em formado \%Y-\%m-\%d.}
+\item{data_inicial_julg}{data inicial da decisão em formado \%Y-\%m-\%d.}
 
-\item{data_final}{data final da decisão em formado \%Y-\%m-\%d.}
+\item{data_final_julg}{data final da decisão em formado \%Y-\%m-\%d.}
+
+\item{data_inicial_reg}{data inicial de registro em formado \%Y-\%m-\%d.}
+
+\item{data_final_reg}{data final de registro em formado \%Y-\%m-\%d.}
 
 \item{secoes}{vetor com as secoes que se deseja pesquisar. Obter o vetor de \code{\link{list_secoes_2inst}}.}
 }

@@ -47,8 +47,10 @@ cjsg_npags <- function(session, parms = NULL) {
 #'
 #' @param session sessão da CJSG.
 #' @param livre string com pesquisa livre por palavras-chave.
-#' @param data_inicial data inicial da decisão em formado \%Y-\%m-\%d.
-#' @param data_final data final da decisão em formado \%Y-\%m-\%d.
+#' @param data_inicial_julg data inicial da decisão em formado \%Y-\%m-\%d.
+#' @param data_final_julg data final da decisão em formado \%Y-\%m-\%d.
+#' @param data_inicial_reg data inicial de registro em formado \%Y-\%m-\%d.
+#' @param data_final_reg data final de registro em formado \%Y-\%m-\%d.
 #' @param secoes vetor com as secoes que se deseja pesquisar. Obter o vetor de \code{\link{list_secoes_2inst}}.
 #'
 #' @return objeto de classe \code{form}.
@@ -63,21 +65,39 @@ cjsg_npags <- function(session, parms = NULL) {
 #' cjsg(s, parms, max_pag = 1, path = '.')
 #' }
 #' @export
-cjsg_parms <- function(session, livre = '', data_inicial = NULL, data_final = NULL, secoes = '') {
+cjsg_parms <- function(session, livre = '', data_inicial_julg = NULL, data_final_julg = NULL, data_inicial_reg = NULL, data_final_reg = NULL, secoes = '') {
   secoes <- paste(secoes, collapse = ',')
-  dt_inicial <- ''
-  if (!is.null(data_inicial)) {
-    data_inicial <- lubridate::ymd(data_inicial)
-    dt_inicial <- sprintf('%02d/%02d/%d', lubridate::day(data_inicial),
-                          lubridate::month(data_inicial),
-                          lubridate::year(data_inicial))
+  dt_inicial_julg <- ''
+  if (!is.null(data_inicial_julg)) {
+    data_inicial_julg <- lubridate::ymd(data_inicial_julg)
+    dt_inicial_julg <- sprintf('%02d/%02d/%d',
+                               lubridate::day(data_inicial_julg),
+                               lubridate::month(data_inicial_julg),
+                               lubridate::year(data_inicial_julg))
   }
-  dt_final <- ''
-  if (!is.null(data_final)) {
-    data_final <- lubridate::ymd(data_final)
-    dt_final <- sprintf('%02d/%02d/%d', lubridate::day(data_final),
-                        lubridate::month(data_final),
-                        lubridate::year(data_final))
+  dt_final_julg <- ''
+  if (!is.null(data_final_julg)) {
+    data_final_julg <- lubridate::ymd(data_final_julg)
+    dt_final_julg <- sprintf('%02d/%02d/%d',
+                             lubridate::day(data_final_julg),
+                             lubridate::month(data_final_julg),
+                             lubridate::year(data_final_julg))
+  }
+  dt_inicial_reg <- ''
+  if (!is.null(data_inicial_reg)) {
+    data_inicial_reg <- lubridate::ymd(data_inicial_reg)
+    dt_inicial_reg <- sprintf('%02d/%02d/%d',
+                               lubridate::day(data_inicial_reg),
+                               lubridate::month(data_inicial_reg),
+                               lubridate::year(data_inicial_reg))
+  }
+  dt_final_reg <- ''
+  if (!is.null(data_final_reg)) {
+    data_final_reg <- lubridate::ymd(data_final_reg)
+    dt_final_reg <- sprintf('%02d/%02d/%d',
+                             lubridate::day(data_final_reg),
+                             lubridate::month(data_final_reg),
+                             lubridate::year(data_final_reg))
   }
   suppressWarnings({
     session %>%
@@ -85,8 +105,10 @@ cjsg_parms <- function(session, livre = '', data_inicial = NULL, data_final = NU
       dplyr::first() %>%
       rvest::set_values('dados.buscaInteiroTeor' = livre,
                         'secoesTreeSelection.values' = secoes,
-                        'dados.dtJulgamentoInicio' = dt_inicial,
-                        'dados.dtJulgamentoFim' = dt_final)
+                        'dados.dtRegistroInicio' = dt_inicial_reg,
+                        'dados.dtRegistroFim' = dt_final_reg,
+                        'dados.dtJulgamentoInicio' = dt_inicial_julg,
+                        'dados.dtJulgamentoFim' = dt_final_julg)
   })
 }
 
