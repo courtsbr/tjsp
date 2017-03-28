@@ -34,7 +34,8 @@ parse_cjpg_um <- function(i, nodes) {
     trim()
   tab_infos <- tibble::tibble(n_processo = n_processo,
                               id_processo = id_processo) %>%
-    dplyr::bind_cols(d_infos)
+    dplyr::bind_cols(d_infos) %>%
+    dplyr::mutate(txt = txt)
   tab_infos
 }
 
