@@ -29,3 +29,35 @@ list_secoes_2inst <- function() {
     dplyr::select(pai, secao, cod)
 }
 
+get_obj_2inst <- function(tipo) {
+  u_base <- 'https://esaj.tjsp.jus.br/cjsg/%sTreeSelect.do?campoId=%s'
+  r <- httr::GET(sprintf(u_base, tipo[1], tipo[1]),
+                 httr::config(ssl_verifypeer = FALSE))
+}
+
+#' Baixa tabela de itens da CJPG.
+#'
+#' Baixa uma tabela com os elementos de classe, assunto ou varas, para ajudar a baixar usando a função CJPG.
+#'
+#' @param tipo classe, assunto ou varas
+#'
+#' @return \code{data.frame} com titulos e cods das folhas e titulos e cods dos pais (índice 0 é a raiz e quanto menor o índice, mais próximo da raiz)
+#'
+#' @export
+cjsg_tabs <- function(tipo = c('classes', 'assuntos')) {
+  r <- get_obj_2inst(tipo)
+  tree <- r %>%
+    httr::content('text') %>%
+    XML::htmlParse(encoding = 'UTF-8') %>%
+    XML::getNodeSet('//div[@class="treeView"]') %>%
+    lapply(function(x) XML::xmlToList(x)) %>%
+    dplyr::first() %>%
+    dplyr::nth(2) %>%
+    purrr::keep(~is.list(.x))
+  tree_to_tibble(tree) %>%
+    dplyr::select(dplyr::ends_with('leaf'),
+                  dplyr::ends_with('0'),
+                  dplyr::everything()) %>%
+    dplyr::mutate(titulo0 = ifelse(is.na(titulo0), titulo_leaf, titulo0),
+                  cod0 = ifelse(is.na(cod0), titulo_leaf, cod0))
+}
