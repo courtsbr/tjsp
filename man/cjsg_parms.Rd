@@ -6,7 +6,7 @@
 \usage{
 cjsg_parms(session, livre = "", data_inicial_julg = NULL,
   data_final_julg = NULL, data_inicial_reg = NULL, data_final_reg = NULL,
-  secoes = "")
+  secoes = "", classes = "", assuntos = "")
 }
 \arguments{
 \item{session}{sessão da CJSG.}
@@ -22,6 +22,10 @@ cjsg_parms(session, livre = "", data_inicial_julg = NULL,
 \item{data_final_reg}{data final de registro em formado \%Y-\%m-\%d.}
 
 \item{secoes}{vetor com as secoes que se deseja pesquisar. Obter o vetor de \code{\link{list_secoes_2inst}}.}
+
+\item{classes}{códigos das classes.}
+
+\item{assuntos}{códigos dos assuntos.}
 }
 \value{
 objeto de classe \code{form}.
