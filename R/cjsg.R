@@ -35,7 +35,7 @@ cjsg_npags <- function(session, parms = NULL) {
     xml2::read_html() %>%
     rvest::html_node('#nomeAba-A') %>%
     rvest::html_text() %>%
-    tidyr::extract_numeric()
+    readr::parse_number()
   (num %/% 20) + 1
 }
 
@@ -51,6 +51,8 @@ cjsg_npags <- function(session, parms = NULL) {
 #' @param data_final_julg data final da decisão em formado \%Y-\%m-\%d.
 #' @param data_inicial_reg data inicial de registro em formado \%Y-\%m-\%d.
 #' @param data_final_reg data final de registro em formado \%Y-\%m-\%d.
+#' @param classes códigos das classes.
+#' @param assuntos códigos dos assuntos.
 #' @param secoes vetor com as secoes que se deseja pesquisar. Obter o vetor de \code{\link{list_secoes_2inst}}.
 #'
 #' @return objeto de classe \code{form}.
@@ -65,7 +67,15 @@ cjsg_npags <- function(session, parms = NULL) {
 #' cjsg(s, parms, max_pag = 1, path = '.')
 #' }
 #' @export
-cjsg_parms <- function(session, livre = '', data_inicial_julg = NULL, data_final_julg = NULL, data_inicial_reg = NULL, data_final_reg = NULL, secoes = '') {
+cjsg_parms <- function(session,
+                       livre = '',
+                       data_inicial_julg = NULL,
+                       data_final_julg = NULL,
+                       data_inicial_reg = NULL,
+                       data_final_reg = NULL,
+                       secoes = '',
+                       classes = '',
+                       assuntos = '') {
   secoes <- paste(secoes, collapse = ',')
   dt_inicial_julg <- ''
   if (!is.null(data_inicial_julg)) {
@@ -108,7 +118,9 @@ cjsg_parms <- function(session, livre = '', data_inicial_julg = NULL, data_final
                         'dados.dtRegistroInicio' = dt_inicial_reg,
                         'dados.dtRegistroFim' = dt_final_reg,
                         'dados.dtJulgamentoInicio' = dt_inicial_julg,
-                        'dados.dtJulgamentoFim' = dt_final_julg)
+                        'dados.dtJulgamentoFim' = dt_final_julg,
+                        'assuntosTreeSelection.values' = assuntos,
+                        'classesTreeSelection.values' = classes)
   })
 }
 
