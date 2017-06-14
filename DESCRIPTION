@@ -21,7 +21,7 @@ Imports:
     magrittr,
     tibble
 RoxygenNote: 6.0.1
-Remotes: abjur/esaj
+Remotes: courtsbr/esaj
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
