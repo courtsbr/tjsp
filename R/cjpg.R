@@ -150,6 +150,7 @@ cjpg <- function(session, parms, path = 'data-raw/cjpg',
                              httr::config(ssl_verifypeer = FALSE))
   })
   n_pags <- cjpg_npags(r0)
+  if(is.na(n_pags)){return(tibble::data_frame(result = 'Busca sem resultados'))}
   n_pags <- if (is.na(max_pag) || is.infinite(max_pag) || max_pag > n_pags) n_pags else max_pag
   abjutils::dvec(cjpg_pag, 1:n_pags, path = path, ow = overwrite, s = session)
 }
