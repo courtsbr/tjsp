@@ -19,22 +19,22 @@ library(magrittr)
 
 # Códigos das câmaras criminais.
 
-sec <- list_secoes_2inst() %>% 
+sec <- list_secoes_2inst() %>%
   dplyr::filter(stringr::str_detect(secao, '[Cc]rim'),
-                stringr::str_detect(pai, 'CRIM')) %>% 
+                stringr::str_detect(pai, 'CRIM')) %>%
   with(cod)
 
 # Abre uma sessão e adiciona parâmetros da pesquisa
 
 session <- cjsg_session()
-parms <- session %>% 
-  cjsg_parms(secoes = sec, data_inicial = '2015-01-01', data_final = '2015-12-31')
+parms <- session %>%
+  cjsg_parms(secoes = sec, data_inicial_julg = '2015-01-01', data_final_julg = '2015-12-31')
 
 # número de paginas a serem baixadas
 session %>% cjsg_npags(parms)
 
 # Download das páginas HTML (cada página corresponde a 20 decisões)
-d_result_cjpg <- session %>% 
+d_result_cjpg <- session %>%
   cjsg(parms, path = 'data-raw/cjsg', max_pag = 5)
 
 # Parse das páginas HTML em uma `tibble`
@@ -48,11 +48,11 @@ Também é possível obter mais informações dos processos, da seguinte forma.
 
 ```
 # Download dos processos obtidos em páginas HTML
-d_result_cposg <- d_jurisprudencia %>% 
-  distinct(n_processo) %>% 
-  with(n_processo) %>% 
+d_result_cposg <- d_jurisprudencia %>%
+  distinct(n_processo) %>%
+  with(n_processo) %>%
   cposg(path = 'data-raw/cposg')
-  
+
 # Parse das páginas HTML obtidas pelo `cposg`
 arqs_cposg <- dir('data-raw/cposg', full.names = TRUE)
 d_cposg <- parse_cposg(arqs_cposg)
